@@ -40,7 +40,9 @@ android {
 }
 
 dependencies {
+    implementation(libs.androidx.biometric)
     implementation(libs.commons.codec)
+    implementation(libs.androidx.security.crypto)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)

@@ -1,6 +1,5 @@
 package edu.mk.code.crypto
 
-import android.util.Log
 import javax.crypto.Mac
 import javax.crypto.spec.SecretKeySpec
 import org.apache.commons.codec.binary.Base32
