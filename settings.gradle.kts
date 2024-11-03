@@ -21,3 +21,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "Code manager"
 include(":app")
+include(":vampire")
