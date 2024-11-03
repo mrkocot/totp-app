@@ -1,10 +1,13 @@
 #include <jni.h>
 #include <malloc.h>
 
+#pragma clang diagnostic push
+#pragma ide diagnostic ignored "UnusedParameter"
+
 jbyteArray process(JNIEnv*, jbyteArray, jbyteArray);
 
 JNIEXPORT jbyteArray JNICALL
-Java_edu_mk_code_persistence_ExportCryptor_encrypt(
+Java_edu_mk_code_persistence_Exporter_encrypt(
         JNIEnv *env,
         jobject thiz,
         jbyteArray password,
@@ -14,7 +17,7 @@ Java_edu_mk_code_persistence_ExportCryptor_encrypt(
 }
 
 JNIEXPORT jbyteArray JNICALL
-Java_edu_mk_code_persistence_ExportCryptor_decrypt(
+Java_edu_mk_code_persistence_Exporter_decrypt(
         JNIEnv *env,
         jobject thiz,
         jbyteArray password,
@@ -46,3 +49,5 @@ jbyteArray process(JNIEnv *env, jbyteArray password, jbyteArray data) {
 
     return result;
 }
+
+#pragma clang diagnostic pop

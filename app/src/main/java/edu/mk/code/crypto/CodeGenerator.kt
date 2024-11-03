@@ -8,8 +8,8 @@ import java.nio.ByteBuffer
 object CodeGenerator {
     @OptIn(ExperimentalStdlibApi::class)
     fun generate(key: String, settings: GeneratorSettings = GeneratorSettings()): String {
-        val keySpec = SecretKeySpec(key.fromBase32(), ALGORITHM)
-        val hmac = Mac.getInstance(ALGORITHM).also { it.init(keySpec) }
+        val keySpec = SecretKeySpec(key.fromBase32(), CryptoConsts.TOTP_ALGORITHM)
+        val hmac = Mac.getInstance(CryptoConsts.TOTP_ALGORITHM).also { it.init(keySpec) }
 
         val timeSteps = (System.currentTimeMillis() - settings.beginning) / settings.millis
         val result = hmac.doFinal(timeSteps.toByteArray())
@@ -23,8 +23,6 @@ object CodeGenerator {
         return result31.toString().takeLast(digitNumber).padStart(digitNumber, '0')
     }
 }
-
-private const val ALGORITHM = "HmacSHA1"
 
 private fun String.fromBase32(): ByteArray =
     Base32().decode(this)
