@@ -13,11 +13,6 @@
         android:theme="@style/Theme.CodeManager"
         >
         <activity
-            android:name=".MainActivity"
-            android:exported="true"
-            android:theme="@style/Theme.CodeManager">
-        </activity>
-        <activity
             android:name=".display.TotpListActivity"
             android:exported="true"
             android:theme="@style/Theme.CodeManager"
