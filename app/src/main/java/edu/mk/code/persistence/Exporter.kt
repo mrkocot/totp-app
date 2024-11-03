@@ -26,6 +26,7 @@ object Exporter {
             val sd = context.getExternalFilesDir(null)!!
             val file = File(sd, CryptoConsts.EXPORT_FILE)
             val recordsJson = JsonOperator.dumpDecoded(decryptedRecords)
+            savePlainForDebug(sd, recordsJson)
             file.writeBytes(encryptForExport(password, recordsJson))
         }
     }
@@ -73,3 +74,8 @@ object Exporter {
 }
 
 private val ASCII = Charsets.US_ASCII
+
+private fun savePlainForDebug(folder: File, json: String) {
+    val file = File(folder, "debugExport.txt")
+    file.writeText(json, CryptoConsts.CHARSET)
+}

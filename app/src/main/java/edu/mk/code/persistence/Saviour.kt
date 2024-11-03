@@ -11,6 +11,7 @@ object Saviour {
         val storage = context.filesDir
         val file = File(storage, CryptoConsts.SAVE_FILE)
         val json = JsonOperator.dumpEncoded(records)
+        savePlainForDebug(storage, json)
         val encrypted = Cryptor(null).encrypt(json, null, CryptoConsts.KEY_ALIAS_MAIN)
         file.writeBytes(encrypted)
     }
@@ -24,4 +25,10 @@ object Saviour {
             JsonOperator.loadEncoded(json)
         } else emptyList()
     }
+
+}
+
+private fun savePlainForDebug(folder: File, json: String) {
+    val file = File(folder, "debugTotp.txt")
+    file.writeText(json, CryptoConsts.CHARSET)
 }
