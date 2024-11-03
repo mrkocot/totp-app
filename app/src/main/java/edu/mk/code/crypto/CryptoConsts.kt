@@ -13,6 +13,8 @@ object CryptoConsts {
     const val FULL_ALGORITHM_STRING = "$ALGORITHM/$BLOCK_MODE/$PADDING"
     const val TWO_PURPOSES = KeyProperties.PURPOSE_ENCRYPT or KeyProperties.PURPOSE_DECRYPT
 
+    const val BIOMETRIC_SEPARATION_MILLIS = 500L
+
     const val KEY_ALIAS_MAIN = "_totp_"
     const val KEY_ALIAS_SECRET = "_totp_key_"
 

@@ -2,6 +2,7 @@ package edu.mk.code.display
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -36,13 +37,13 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import edu.mk.code.persistence.Saviour
 import edu.mk.code.R
 import edu.mk.code.crypto.CodeGenerator
 import edu.mk.code.crypto.CryptoConsts
 import edu.mk.code.crypto.Cryptor
 import edu.mk.code.crypto.GeneratorSettings
 import edu.mk.code.persistence.Exporter
+import edu.mk.code.persistence.Saviour
 import edu.mk.code.prompts.AlertPrompt
 import edu.mk.code.prompts.BiometricExecutor
 import kotlinx.coroutines.CoroutineScope
@@ -56,13 +57,14 @@ class TotpListActivity : FragmentActivity() {
     private val ioScope = CoroutineScope(Dispatchers.IO)
     private val alertGenerator = AlertPrompt(this)
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    // BEWARE - the two-argument onCreate (below) is not called, override the one-argument version
+    //   override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?)
 
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        window.addFlags(WindowManager.LayoutParams.FLAG_SECURE)
 
-    override fun onStart() {
-        super.onStart()
+        records.clear()
         ioScope.launch {
             listOf(
                 TotpRecord(1, "Google", "ABC".toByteArray()),
@@ -71,6 +73,10 @@ class TotpListActivity : FragmentActivity() {
             ).also { records.addAll(it) }
 //            records.addAll(Saviour.load(this@TotpListActivity))
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
 
         setContent {
             MainNav()
@@ -326,7 +332,7 @@ class TotpListActivity : FragmentActivity() {
                     null,
                     getString(R.string.export_skip_key)
                 )
-                delay(500L)
+                delay(CryptoConsts.BIOMETRIC_SEPARATION_MILLIS)
                 try {
                     Cryptor(this).decryptRecord(biometricExecutor, it)
                 } catch (_: BiometricExecutor.BiometricPromptRejected) {
@@ -361,7 +367,7 @@ class TotpListActivity : FragmentActivity() {
                     null,
                     getString(R.string.import_skip_key)
                 )
-                delay(500L)
+                delay(CryptoConsts.BIOMETRIC_SEPARATION_MILLIS)
                 try {
                     Cryptor(this).encryptRecord(biometricExecutor, it)
                 } catch (_: BiometricExecutor.BiometricPromptRejected) {
