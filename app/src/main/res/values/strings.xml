@@ -64,4 +64,8 @@
     <string name="totp_create_authorise_cancel">Cancel creation</string>
 
     <string name="value_bounds">%1$s must be in range [%2$d, %3$d]</string>
+
+    <string name="external_authorise_title">Authorise external TOTP access</string>
+    <string name="external_authorise_subtitle">TOTP code \"%1$s\" will be accessed</string>
+    <string name="external_authorise_cancel">Don\'t allow</string>
 </resources>

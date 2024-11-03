@@ -13,6 +13,15 @@
         android:theme="@style/Theme.CodeManager"
         >
         <activity
+            android:name=".provider.TotpProviderActivity"
+            android:exported="true"
+            android:theme="@style/Theme.CodeManager"
+            >
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".display.TotpListActivity"
             android:exported="true"
             android:theme="@style/Theme.CodeManager"
