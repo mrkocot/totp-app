@@ -4,7 +4,7 @@
 jbyteArray process(JNIEnv*, jbyteArray, jbyteArray);
 
 JNIEXPORT jbyteArray JNICALL
-Java_edu_mk_code_persistence_ExportCryptor_encrypt(
+Java_edu_mk_code_persistence_Exporter_encrypt(
         JNIEnv *env,
         jobject thiz,
         jbyteArray password,
@@ -14,7 +14,7 @@ Java_edu_mk_code_persistence_ExportCryptor_encrypt(
 }
 
 JNIEXPORT jbyteArray JNICALL
-Java_edu_mk_code_persistence_ExportCryptor_decrypt(
+Java_edu_mk_code_persistence_Exporter_decrypt(
         JNIEnv *env,
         jobject thiz,
         jbyteArray password,

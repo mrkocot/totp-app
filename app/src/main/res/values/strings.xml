@@ -1,3 +1,65 @@
 <resources>
-    <string name="app_name">Code manager</string>
+    <string name="app_name">TOTP Manager</string>
+
+    <string name="password">Password</string>
+
+    <string name="export_import_button">Export / Import</string>
+
+    <string name="export_button">Export</string>
+    <string name="export_confirm_title">Export keys</string>
+    <plurals name="export_confirm_message">
+        <item quantity="one">Your one key will be exported</item>
+        <item quantity="other">
+            Your %1$d keys will be exported. You will be asked to authorise for each key separately.
+        </item>
+    </plurals>
+    <string name="export_failed">Export failed</string>
+    <string name="export_authorise_title">Export %1$s</string>
+    <string name="export_skip_key">Skip this key</string>
+    <string name="export_finish_title">Export finished</string>
+    <plurals name="export_finish_message">
+        <item quantity="one">Exported one key</item>
+        <item quantity="other">Exported %1$d keys</item>
+    </plurals>
+
+    <string name="import_button">Import</string>
+    <string name="import_confirm_title">Import keys</string>
+    <plurals name="import_confirm_message">
+        <item quantity="one">Your one key will be replaced</item>
+        <item quantity="other">
+            All your %1$d keys will be replaced. You will be asked to authorise for each imported key separately.
+        </item>
+    </plurals>
+    <string name="import_failed">Import failed</string>
+    <string name="import_authorise_title">Import %1$s</string>
+    <string name="import_skip_key">@string/export_skip_key</string>
+    <string name="import_finish_title">Import finished</string>
+    <plurals name="import_finish_message">
+        <item quantity="one">Imported one key</item>
+        <item quantity="other">Imported %1$d keys</item>
+    </plurals>
+
+    <string name="code_generate_authorise_title">Authorise TOTP generation</string>
+    <string name="code_generate_authorise_subtitle">\"%1$s\" TOTP code will be displayed for %2$d seconds</string>
+    <string name="code_generate_authorise_cancel">Nevermind</string>
+
+    <string name="error_password_empty">Password cannot be empty</string>
+    <string name="error_import_wrong_password">Invalid password or malformed export file</string>
+    <string name="error_export_file_not_found">Export file not found</string>
+
+    <string name="totp_create_button">Create new TOTP</string>
+    <string name="totp_create_name">Name</string>
+    <string name="totp_create_name_empty">Name cannot be empty</string>
+    <string name="totp_create_digits">TOTP code length</string>
+    <string name="totp_create_seconds">Seconds</string>
+    <string name="totp_create_beginning">Generation start epoch</string>
+    <string name="totp_create_beginning_too_big">Cannot exceed current epoch time</string>
+    <string name="totp_create_key">Secret key</string>
+    <string name="totp_create_key_invalid">Secret key has to be a valid Base32 string</string>
+    <string name="totp_create_submit">Create</string>
+    <string name="totp_create_authorise_title">Authorise TOTP creation</string>
+    <string name="totp_create_authorise_subtitle">A new TOTP \"%1$s\" will be created</string>
+    <string name="totp_create_authorise_cancel">Cancel creation</string>
+
+    <string name="value_bounds">%1$s must be in range [%2$d, %3$d]</string>
 </resources>

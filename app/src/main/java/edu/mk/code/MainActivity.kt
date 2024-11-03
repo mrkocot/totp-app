@@ -12,7 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import edu.mk.code.crypto.CodeGenerator
-import edu.mk.code.crypto.GeneratorSettings
+import edu.mk.code.persistence.Exporter
 import edu.mk.code.ui.theme.CodeManagerTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,11 +24,14 @@ class MainActivity : ComponentActivity() {
     override fun onStart() {
         super.onStart()
         val code = CodeGenerator.generate("JBSWY3DPEHPK3PXP")
+
+        val password = "abcdefg".toByteArray()
+
         setContent {
             CodeManagerTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     Greeting(
-                        name = "Code from ${System.currentTimeMillis() / 1000L}: $code",
+                        name = "425",
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -40,7 +43,7 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
     Text(
-        text = "Hello, $name",
+        text = name,
         modifier = modifier
     )
 }
