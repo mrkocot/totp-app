@@ -11,6 +11,7 @@ import edu.mk.code.crypto.CodeGenerator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 /**
  * To use this data provider activity,
@@ -39,14 +40,16 @@ class TotpProviderActivity : FragmentActivity() {
         CoroutineScope(Dispatchers.IO).launch {
             val code = getCode(totpId)
             returnIntent.putExtra(TOTP_CODE, code)
-            setResult(RESULT_OK, returnIntent)
-            finish()
+            withContext(Dispatchers.Main) {
+                setResult(RESULT_OK, returnIntent)
+                finish()
+            }
         }
     }
 
-    private suspend fun getCode(totpId: Int): String? {
+    private suspend fun getCode(totpId: Int): String {
         val allRecords = Saviour.load(this@TotpProviderActivity)
-        val record = allRecords.find { it.id == totpId } ?: return null
+        val record = allRecords.find { it.id == totpId } ?: return NOT_FOUND
         val biometricExecutor = BiometricExecutor(
             getString(R.string.external_authorise_title),
             getString(R.string.external_authorise_subtitle, record.name),
@@ -57,7 +60,7 @@ class TotpProviderActivity : FragmentActivity() {
                 Cryptor(this).decryptRecord(biometricExecutor, record)
             CodeGenerator.generate(decrypted.key, decrypted.settings)
         } catch (_: BiometricExecutor.BiometricPromptRejected) {
-            null
+            REJECTED
         }
     }
 
@@ -66,3 +69,6 @@ class TotpProviderActivity : FragmentActivity() {
         const val TOTP_CODE = "totpCode"
     }
 }
+
+private const val NOT_FOUND = "<id not found>"
+private const val REJECTED = "<rejected>"

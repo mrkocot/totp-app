@@ -2,6 +2,7 @@ package edu.mk.vampire
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
@@ -23,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import edu.mk.vampire.ui.theme.CodeManagerTheme
+import kotlin.math.abs
 import kotlin.random.Random
 
 class TotpGetter : ComponentActivity() {
@@ -65,6 +67,7 @@ class TotpGetter : ComponentActivity() {
             )
             Button(
                 onClick = {
+                    totp = "loading..."
                     startTotpProvider(code)
                 }
             ) { Text("Get TOTP") }
@@ -73,7 +76,7 @@ class TotpGetter : ComponentActivity() {
     }
 
     private fun startTotpProvider(totpId: Int) {
-        val requestId = Random.nextInt()
+        val requestId = abs(Random.nextInt())
         val intent = Intent(Intent.ACTION_VIEW).apply {
             setClassName(
                 "edu.mk.code",
@@ -88,6 +91,7 @@ class TotpGetter : ComponentActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         val totp = data?.getStringExtra("totpCode")
+        Log.d("MK", "Returned code: $totp (requestCode=$requestCode)")
         totpValue = "Returned code: $totp"
     }
 }
