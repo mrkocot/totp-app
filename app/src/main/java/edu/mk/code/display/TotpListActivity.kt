@@ -1,7 +1,6 @@
 package edu.mk.code.display
 
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.WindowManager
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
@@ -66,21 +65,16 @@ class TotpListActivity : FragmentActivity() {
 
         records.clear()
         ioScope.launch {
-            listOf(
-                TotpRecord(1, "Google", "ABC".toByteArray()),
-                TotpRecord(2, "Facebook", "PQR".toByteArray(), GeneratorSettings(digits = 9)),
-                TotpRecord(3, "Apple", "123".toByteArray(), GeneratorSettings(digits = 4)),
-            ).also { records.addAll(it) }
-//            records.addAll(Saviour.load(this@TotpListActivity))
+            records.addAll(Saviour.load(this@TotpListActivity))
+        }
+
+        setContent {
+            MainNav()
         }
     }
 
     override fun onStart() {
         super.onStart()
-
-        setContent {
-            MainNav()
-        }
     }
 
     override fun onStop() {

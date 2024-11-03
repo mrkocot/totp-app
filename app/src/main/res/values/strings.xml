@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">TOTP Manager</string>
 
+    <string name="get_in_button">See your TOTPs</string>
+
     <string name="password">Password</string>
 
     <string name="export_import_button">Export / Import</string>

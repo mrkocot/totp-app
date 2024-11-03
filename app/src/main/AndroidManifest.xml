@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <permission android:name="edu.mk.code.VIEW_TOTP_LIST"/>
 
     <application
         android:allowBackup="true"
@@ -19,10 +20,17 @@
         <activity
             android:name=".display.TotpListActivity"
             android:exported="true"
-            android:theme="@style/Theme.CodeManager">
+            android:theme="@style/Theme.CodeManager"
+            android:permission="edu.mk.code.VIEW_TOTP_LIST"
+            >
+        </activity>
+        <activity
+            android:name=".display.TotpWelcomeScreen"
+            android:exported="true"
+            android:theme="@style/Theme.CodeManager"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
