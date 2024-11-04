@@ -3,6 +3,7 @@ package edu.mk.code.provider
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.FragmentActivity
+import com.scottyab.rootbeer.RootBeer
 import edu.mk.code.crypto.Cryptor
 import edu.mk.code.persistence.Saviour
 import edu.mk.code.prompts.BiometricExecutor
@@ -48,6 +49,7 @@ class TotpProviderActivity : FragmentActivity() {
     }
 
     private suspend fun getCode(totpId: Int): String {
+        if (!RootBeer(this).isRooted) return ROOT
         val allRecords = Saviour.load(this@TotpProviderActivity)
         val record = allRecords.find { it.id == totpId } ?: return NOT_FOUND
         val biometricExecutor = BiometricExecutor(
@@ -72,3 +74,4 @@ class TotpProviderActivity : FragmentActivity() {
 
 private const val NOT_FOUND = "<id not found>"
 private const val REJECTED = "<rejected>"
+private const val ROOT = "<unsafe>"
