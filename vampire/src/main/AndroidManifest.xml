@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
-<!--    <queries>-->
-<!--        <package android:name="edu.mk.code" />-->
-<!--    </queries>-->
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/vampire"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/vampire_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CodeManager">
         <activity

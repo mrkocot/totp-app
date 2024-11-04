@@ -2,6 +2,8 @@
     <string name="app_name">TOTP Manager</string>
 
     <string name="get_in_button">See your TOTPs</string>
+    <string name="get_in_unsafe_title">Access denied</string>
+    <string name="get_in_unsafe_message">Your device is unsafe</string>
 
     <string name="password">Password</string>
 
